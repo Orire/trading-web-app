@@ -9,8 +9,9 @@ import socketio
 from contextlib import asynccontextmanager
 import logging
 
-from app.api import signals, positions, markets, performance, advice, strategy
+from app.api import signals, positions, markets, performance, advice, strategy, settings, bot
 from app.settings import get_settings
+from app.services.strategy_bot import strategy_bot_service
 from app.websocket.trading import setup_websocket
 
 settings = get_settings()
@@ -29,7 +30,9 @@ async def lifespan(app: FastAPI):
     """Application lifespan events"""
     logger.info("Starting application...")
     setup_websocket(sio)
+    strategy_bot_service.start_background()
     yield
+    await strategy_bot_service.stop_background()
     logger.info("Shutting down application...")
 
 # Create FastAPI app
@@ -56,6 +59,8 @@ app.include_router(markets.router, prefix="/api/markets", tags=["markets"])
 app.include_router(performance.router, prefix="/api/performance", tags=["performance"])
 app.include_router(advice.router, prefix="/api/advice", tags=["advice"])
 app.include_router(strategy.router, prefix="/api/strategy", tags=["strategy"])
+app.include_router(settings.router, prefix="/api/settings", tags=["settings"])
+app.include_router(bot.router, prefix="/api/bot", tags=["bot"])
 
 @app.get("/")
 async def root():

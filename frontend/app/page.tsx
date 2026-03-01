@@ -13,60 +13,47 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <nav className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-indigo-600">
-                📈 eToro Trading
-              </h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Link href="/dashboard" className="text-gray-700 hover:text-indigo-600">
-                Dashboard
-              </Link>
-              <Link href="/strategy" className="text-gray-700 hover:text-indigo-600">
-                Strategy Builder
-              </Link>
-              <Link href="/learn" className="text-gray-700 hover:text-indigo-600">
-                Learn
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Trading for Dummies
-          </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Your beginner-friendly guide to profitable trading
+    <main className="mobile-shell pb-12">
+      <div className="mx-auto max-w-4xl px-4 pt-6 sm:px-6">
+        <div className="hero-card">
+          <p className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700">
+            Beginner Friendly
           </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-            <Link href="/dashboard" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
-              <div className="text-4xl mb-4">📊</div>
-              <h3 className="text-xl font-semibold mb-2">Dashboard</h3>
-              <p className="text-gray-600">View your positions, signals, and performance</p>
+          <h1 className="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">
+            TradingAPP_Ri
+          </h1>
+          <p className="mt-2 text-sm text-slate-600 sm:text-base">
+            Mobile-first trading control center for signals, performance, and personalized goals.
+          </p>
+          <div className="mt-4 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+            <Link href="/dashboard" className="btn-primary text-center">
+              Open dashboard
             </Link>
-            
-            <Link href="/strategy" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
-              <div className="text-4xl mb-4">🎯</div>
-              <h3 className="text-xl font-semibold mb-2">Set Goals</h3>
-              <p className="text-gray-600">Define your trading targets and build strategies</p>
-            </Link>
-            
-            <Link href="/learn" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
-              <div className="text-4xl mb-4">📚</div>
-              <h3 className="text-xl font-semibold mb-2">Learn</h3>
-              <p className="text-gray-600">Master trading concepts and strategies</p>
+            <Link href="/settings" className="btn-secondary text-center">
+              Connect eToro API
             </Link>
           </div>
         </div>
-      </main>
-    </div>
+
+        <section className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <Link href="/dashboard" className="tile-card">
+            <h2 className="tile-title">Live Dashboard</h2>
+            <p className="tile-copy">Positions, P&L, and new signals in one place.</p>
+          </Link>
+          <Link href="/settings" className="tile-card">
+            <h2 className="tile-title">API Connection</h2>
+            <p className="tile-copy">Save your eToro API key and secret securely on backend.</p>
+          </Link>
+          <Link href="/strategy" className="tile-card">
+            <h2 className="tile-title">Goal Strategy</h2>
+            <p className="tile-copy">Define return goals and suggested plan shape.</p>
+          </Link>
+          <Link href="/learn" className="tile-card">
+            <h2 className="tile-title">Learning Hub</h2>
+            <p className="tile-copy">Quick guidance and practical next steps.</p>
+          </Link>
+        </section>
+      </div>
+    </main>
   );
 }
