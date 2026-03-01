@@ -1,0 +1,21 @@
+[Unit]
+Description=TradingAPP_Ri Backend (FastAPI)
+After=network.target
+
+[Service]
+Type=simple
+User=tradingapp_ri
+Group=tradingapp_ri
+WorkingDirectory=/opt/tradingapp-ri/repo/backend
+EnvironmentFile=/etc/tradingapp-ri/backend.env
+ExecStart=/opt/tradingapp-ri/repo/backend/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/var/log/tradingapp-ri
+
+[Install]
+WantedBy=multi-user.target

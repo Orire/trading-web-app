@@ -11,7 +11,8 @@ import logging
 
 # Add trading bot to path
 trading_bot_path = Path(__file__).parent.parent.parent.parent / "etoro_api_app"
-sys.path.insert(0, str(trading_bot_path))
+if trading_bot_path.exists():
+    sys.path.insert(0, str(trading_bot_path))
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +30,8 @@ class TradingBotService:
         try:
             # Import from etoro_api_app
             bot_path = trading_bot_path / "src"
-            sys.path.insert(0, str(bot_path.parent))
+            if bot_path.parent.exists():
+                sys.path.insert(0, str(bot_path.parent))
             
             from src.etoro_client import EtoroClient
             from src.trading.signal_generator import SignalGenerator

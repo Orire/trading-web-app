@@ -26,7 +26,7 @@ def setup_websocket(sio):
     async def subscribe(sid, data):
         """Subscribe to updates"""
         room = data.get('room', 'default')
-        sio.enter_room(sid, room)
+        await sio.enter_room(sid, room)
         logger.info(f"Client {sid} subscribed to {room}")
     
     # In production, these would be called by the trading bot

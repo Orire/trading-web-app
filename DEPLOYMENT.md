@@ -9,6 +9,7 @@ Complete guide to deploy the Trading Web App (Frontend, Backend, and Mobile).
 3. [Mobile (React Native) - Expo](#mobile-expo)
 4. [Environment Variables](#environment-variables)
 5. [Post-Deployment Checklist](#post-deployment-checklist)
+6. [Isolated VM Deployment (Tenant: TradingAPP_Ri)](#isolated-vm-deployment-tenant-tradingapp_ri)
 
 ---
 
@@ -202,6 +203,47 @@ If you want everything on Vercel:
    - Install Expo Go app on your phone
    - Scan QR code from terminal
    - App loads on your device
+
+---
+
+## Isolated VM Deployment (Tenant: TradingAPP_Ri)
+
+Use this when deploying on a shared machine where this project must remain isolated.
+
+### Isolation model
+
+- Linux user/group: `tradingapp_ri`
+- App root: `/opt/tradingapp-ri`
+- Env dir: `/etc/tradingapp-ri`
+- Logs: `/var/log/tradingapp-ri`
+- Services:
+  - `tradingapp-ri-backend.service`
+  - `tradingapp-ri-frontend.service`
+
+### Files added in this repo
+
+- `ops/vm/install-tradingapp-ri.sh`
+- `ops/vm/deploy-tradingapp-ri.sh`
+- `ops/vm/tradingapp-ri-backend.service`
+- `ops/vm/tradingapp-ri-frontend.service`
+- `ops/vm/nginx-tradingapp-ri.conf`
+- `ops/vm/backend.env.example`
+- `ops/vm/frontend.env.example`
+
+### Quick steps
+
+```bash
+cd /opt/tradingapp-ri/repo
+sudo bash ops/vm/install-tradingapp-ri.sh
+```
+
+Then create env files in `/etc/tradingapp-ri/` and restart services:
+
+```bash
+sudo systemctl restart tradingapp-ri-backend.service tradingapp-ri-frontend.service
+```
+
+Use nginx config template in `ops/vm/nginx-tradingapp-ri.conf` for public ingress.
 
 ---
 

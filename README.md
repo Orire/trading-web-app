@@ -98,6 +98,19 @@ ETORO_BASE_URL=https://api.etoro.com
 3. Deploy FastAPI application
 4. Configure WebSocket support
 
+### Isolated Azure VM (single-tenant)
+
+This repo includes isolated VM deployment assets under `ops/vm/`.
+
+- Uses dedicated tenant paths/service names:
+  - `/opt/tradingapp-ri`
+  - `/etc/tradingapp-ri`
+  - `tradingapp-ri-backend.service`
+  - `tradingapp-ri-frontend.service`
+- Does not share runtime paths with any other project on the same machine.
+
+See `ops/vm/README.md` for full setup.
+
 ## API Documentation
 
 Once the backend is running, visit:

@@ -1,0 +1,21 @@
+[Unit]
+Description=TradingAPP_Ri Frontend (Next.js)
+After=network.target tradingapp-ri-backend.service
+
+[Service]
+Type=simple
+User=tradingapp_ri
+Group=tradingapp_ri
+WorkingDirectory=/opt/tradingapp-ri/repo/frontend
+EnvironmentFile=/etc/tradingapp-ri/frontend.env
+ExecStart=/usr/bin/env bash -lc "npm run start -- --hostname 127.0.0.1 --port 3000"
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/var/log/tradingapp-ri
+
+[Install]
+WantedBy=multi-user.target
