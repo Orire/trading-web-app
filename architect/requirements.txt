@@ -1,0 +1,4 @@
+# Architect Agent Dependencies
+# These are in addition to backend requirements
+
+requests>=2.31.0
